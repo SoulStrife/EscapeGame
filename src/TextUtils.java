@@ -30,7 +30,7 @@ public class TextUtils {
 	 * Helper method to retrieve the save map from the
 	 * file at the given path
 	 * 
-	 * @param path the path to retrieve the save file from
+	 * @param file the file containing the save map
 	 * @return the HashMap of the save files
 	 * @throws SaveFailException if anything goes wrong retrieving the map
 	 */
@@ -81,7 +81,7 @@ public class TextUtils {
 	/**
 	 * Create the initial save map at the given path
 	 * 
-	 * @param path the path to the save file
+	 * @param file the file containing the save map
 	 * @throws SaveFailException thrown if the HashMap could not be written
 	 */
 	private static void createInitialSaveMap(File file) throws SaveFailException {
@@ -103,7 +103,6 @@ public class TextUtils {
 	 * then writes the game to the returned map. The map is then re-written to the
 	 * file.
 	 * 
-	 * @param path the path to save to
 	 * @param name the name of the save file
 	 * @param game the game to be saved
 	 * @throws SaveFailException thrown if a write failure occurs while saving the game
@@ -125,7 +124,6 @@ public class TextUtils {
 	 * Loads the game with the specified name from the given path. This method assumes
 	 * that the given file exists, and contains the save map.
 	 * 
-	 * @param path the path to look for the save file in
 	 * @param name the specific name of the save file
 	 * @return the loaded GameWorld
 	 * @throws SaveFailException thrown if the save map cannot be retrieved from the given path
