@@ -75,7 +75,7 @@ public class ServerThread implements Runnable {
 			GameWorld game = null;
 			
 			if (command .equals("y")) {
-				game = new GameWorld();
+				game = new GameWorld("saves.dat");
 			}
 			else if (command.equals("n")) {
 				
