@@ -1,11 +1,4 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.util.HashMap;
 
 /**
  * The GameWorld class is the top-level game class
@@ -30,26 +23,17 @@ public class GameWorld implements Serializable {
 	 */
 	private final String[] commandList = {};
 	
-	/**
-	 * The save file
-	 */
-	private final File saveFile;
+	private final String savePath;
 	
 	/**
-	 * Creates a new GameWorld with save location at path.
+	 * Creates a new GameWorld with save location at 
+	 * the given path. Everything else about initial
+	 * GameWorlds should be identical.
 	 * 
 	 * @param path the path to look for the save files at
 	 */
-	public GameWorld(String savePath) throws SaveCreationFailException {
-		
-		this.saveFile = new File(savePath);
-		
-		try {
-			saveFile.createNewFile();
-		} catch (IOException e) {
-			throw new SaveCreationFailException();
-		}
-		
+	public GameWorld(String path) {
+		savePath = path;
 	}
 	
 	/**

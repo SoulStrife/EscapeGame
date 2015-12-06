@@ -10,13 +10,21 @@ import java.util.HashMap;
 /**
  * Provides utilities for reading and writing game information
  * to and from files. Includes methods for saving and loading
- * GameWorld objects.
+ * GameWorld objects. All public methods in this class throw
+ * SaveFailExceptions, a subclass of IOException, which indicates
+ * that the save file could not be loaded.
  * 
  * @author Steven Bertolucci
- * @version 2.0 December 6th, 2015
+ * @version 2.1 December 6th, 2015
  *
  */
 public class TextUtils {
+	
+	/**
+	 * Constant path to the location of saved games.
+	 * Change to save to a different location.
+	 */
+	private static final String SAVE_PATH = "saves.dat";
 	
 	/**
 	 * Helper method to retrieve the save map from the
@@ -27,7 +35,7 @@ public class TextUtils {
 	 * @throws SaveFailException if anything goes wrong retrieving the map
 	 */
 	@SuppressWarnings("unchecked")
-	public static HashMap<String, GameWorld> getSaveMap(File file) throws SaveFailException {
+	private static HashMap<String, GameWorld> getSaveMap(File file) throws SaveFailException {
 		
 		HashMap<String, GameWorld> saveMap;
 		
@@ -100,9 +108,9 @@ public class TextUtils {
 	 * @param game the game to be saved
 	 * @throws SaveFailException thrown if a write failure occurs while saving the game
 	 */
-	public static void save(String path, String name, GameWorld game) throws SaveFailException {
+	public static void save(String name, GameWorld game) throws SaveFailException {
 		
-		File file = new File(path);
+		File file = new File(SAVE_PATH);
 		
 		if (!file.exists()) {
 			createInitialSaveMap(file);
@@ -122,9 +130,9 @@ public class TextUtils {
 	 * @return the loaded GameWorld
 	 * @throws SaveFailException thrown if the save map cannot be retrieved from the given path
 	 */
-	public static GameWorld load(String path, String name) throws SaveFailException {
+	public static GameWorld load(String name) throws SaveFailException {
 		
-		File file = new File(path);
+		File file = new File(SAVE_PATH);
 		
 		if (!file.exists()) {
 			throw new SaveFailException();
