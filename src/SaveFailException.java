@@ -12,16 +12,25 @@ import java.io.IOException;
 public class SaveFailException extends IOException {
 
 	/**
-	 * 
+	 * The version of the class for serializing purposes
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Explicit zero-argument call to superconstructor
+	 */
 	public SaveFailException() {
 		super();
 	}
 	
-	public SaveFailException(String s) {
-		super(s);
+	/**
+	 * Explicit constructor for constructing an exception
+	 * with a message.
+	 * 
+	 * @param message a more detailed error message
+	 */
+	public SaveFailException(String message) {
+		super(message);
 	}
 
 }

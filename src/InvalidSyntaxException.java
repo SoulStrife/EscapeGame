@@ -8,17 +8,28 @@
  */
 public class InvalidSyntaxException extends Throwable {
 		
+
 	/**
-	 * 
+	 * The version of the class for serializing purposes
 	 */
 	private static final long serialVersionUID = 1L;
 	
+
+	/**
+	 * Explicit zero-argument call to superconstructor
+	 */
 	public InvalidSyntaxException() {
 		super();
 	}
 
-	public InvalidSyntaxException(String s) {
-		super(s);
+	/**
+	 * Explicit constructor for constructing an exception
+	 * with a message.
+	 * 
+	 * @param message a more detailed error message
+	 */
+	public InvalidSyntaxException(String message) {
+		super(message);
 	}
 		
 }

@@ -19,21 +19,26 @@ public class GameWorld implements Serializable {
 	
 	/**
 	 * Contains the list of valid commands that the
-	 * server is able to parse.
+	 * server is able to parse. These commands (such
+	 * as GET, PLACE, and so on) make up the first
+	 * part of any command.
 	 */
-	private final String[] commandList = {};
+	private final String[] ACTIONS = {};
 	
-	private final String savePath;
+	/**
+	 * Contains the list of all objects that can
+	 * appear in the game. These objects are used
+	 * as the arguments of some commands.
+	 */
+	private final String[] OBJECTS = {};
 	
 	/**
 	 * Creates a new GameWorld with save location at 
 	 * the given path. Everything else about initial
 	 * GameWorlds should be identical.
-	 * 
-	 * @param path the path to look for the save files at
 	 */
-	public GameWorld(String path) {
-		savePath = path;
+	public GameWorld() {
+		
 	}
 	
 	/**

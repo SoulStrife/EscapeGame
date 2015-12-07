@@ -75,25 +75,25 @@ public class ServerThread implements Runnable {
 			GameWorld game = null;
 			
 			if (command .equals("y")) {
-				game = new GameWorld("saves.dat");
+				game = new GameWorld();
 			}
 			else if (command.equals("n")) {
 				
 				loadGame : while (true) {
 					
-					out.println("Please enter the number of your save file");
-					String savePath = in.readLine();
+					out.println("Please enter the name of your save file.");
+					String saveName = in.readLine();
 					//parse the number into some path
 					
-					if (savePath == null) {
+					if (saveName == null) {
 						throw new IOException(); //The connection has been lost
 					}
 					
 					try {
-						game = TextUtils.load(savePath);
+						game = TextUtils.load(saveName);
 						break;
 					} catch (IOException e) {
-						out.println("Save file not found. Please enter a valid number.");
+						out.println("Save file not found. Please enter a valid name.");
 						continue loadGame;
 					}
 				}
