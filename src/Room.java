@@ -1,16 +1,22 @@
 import java.io.*;
+import java.util.ArrayList;
 
 public class Room {
 	char[][] room;
+	ArrayList<WorldObject> objects;
+	ArrayList<UseableWorldObject> gameObjects;
+	
 	/*
 	 * Room constructor
 	 * 
 	 * @param file the file to be opened that contains the room
 	 */
-	Room(String file) throws IOException{
+	Room(String rFile, String objectsFile, String gameObjectsFile) throws IOException{
 		room = new char[5][20];
+		objects = new ArrayList<WorldObject>();
+		gameObjects =  new ArrayList<UseableWorldObject>();
 		try(
-			FileReader in = new FileReader(new File(file));
+			FileReader in = new FileReader(new File(rFile));
 		){
 			int c;
 			for(int i = 0; i < room.length; i++){
@@ -26,6 +32,18 @@ public class Room {
 				}
 			}
 		}
+		
+		try(
+				BufferedReader in = new BufferedReader(new FileReader(objectsFile));
+			){
+				String line = in.readLine();
+				WorldObject temp;
+				while(!(line.equals("end"))){
+					temp = new WorldObject(line.charAt(0),line.substring(4),line.substring(2, 3).equals("1"));
+					objects.add(temp);
+					line = in.readLine();
+				}
+			}
 	}
 	
 	/*
@@ -37,6 +55,9 @@ public class Room {
 				System.out.print(room[i][x]);
 			}
 			System.out.println();
+		}
+		for(WorldObject i: objects){
+			System.out.println(i);
 		}
 	}
 	

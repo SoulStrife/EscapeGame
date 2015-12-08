@@ -1,0 +1,4 @@
+| 0 wall
+_ 0 wall
+C 1 generator
+end
