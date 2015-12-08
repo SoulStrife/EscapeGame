@@ -2,7 +2,11 @@ import java.io.*;
 
 public class Room {
 	char[][] room;
-	
+	/*
+	 * Room constructor
+	 * 
+	 * @param file the file to be opened that contains the room
+	 */
 	Room(String file) throws IOException{
 		room = new char[5][20];
 		try(
@@ -24,6 +28,9 @@ public class Room {
 		}
 	}
 	
+	/*
+	 * Prints the room
+	 */
 	public void printRoom(){
 		for(int i = 0; i < room.length; i++){
 			for(int x = 0; x < room[0].length; x++){
@@ -33,6 +40,11 @@ public class Room {
 		}
 	}
 	
+	/*
+	 * Saves the room to specified file
+	 * 
+	 * @param file the file the room will be saved to
+	 */
 	public void saveRoom(String file) throws IOException{
 		try(FileWriter out = new FileWriter(new File(file))){
 			for(int i = 0; i < room.length; i++){
