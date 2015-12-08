@@ -1,9 +1,3 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /**
@@ -25,22 +19,26 @@ public class GameWorld implements Serializable {
 	
 	/**
 	 * Contains the list of valid commands that the
-	 * server is able to parse.
+	 * server is able to parse. These commands (such
+	 * as GET, PLACE, and so on) make up the first
+	 * part of any command.
 	 */
-	private final String[] commandList = {};
+	private final String[] ACTIONS = {};
 	
 	/**
-	 * The path to save and load games from
+	 * Contains the list of all objects that can
+	 * appear in the game. These objects are used
+	 * as the arguments of some commands.
 	 */
-	private final String savePath;
+	private final String[] OBJECTS = {};
 	
 	/**
-	 * Creates a new GameWorld with save location at path.
-	 * 
-	 * @param path the path to look for the save files at
+	 * Creates a new GameWorld with save location at 
+	 * the given path. Everything else about initial
+	 * GameWorlds should be identical.
 	 */
-	public GameWorld(String savePath) {
-		this.savePath = savePath;
+	public GameWorld() {
+		
 	}
 	
 	/**
@@ -81,59 +79,6 @@ public class GameWorld implements Serializable {
 	 */
 	public String displayCurrentRoom() {
 		return null;
-	}
-	
-	/**
-	 * Gets the current save path
-	 * 
-	 * @return the path where games are saved
-	 */
-	public String getSavePath() {
-		return savePath;
-	}
-	
-	/**
-	 * Save the given GameWorld to the given path. Works by
-	 * serializing the GameWorld, and writing the output to
-	 * the given file path.
-	 * 
-	 * @param game the GameWorld to be saved
-	 * @param path the path to save to
-	 * @throws IOException thrown if save file is corrupted
-	 */
-	public static void save(GameWorld game, String path) throws IOException {
-		
-		ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(new File(path)));
-		out.writeObject(game);
-		out.close();
-		
-	}
-	
-	/**
-	 * Load a saved game from the given file path. Works by
-	 * deserializing a stored GameWorld from the given file
-	 * path.
-	 * 
-	 * @param path the path to load the GameWorld from
-	 * @return the loaded GameWorld
-	 * @throws IOException thrown if the given file is not accessible
-	 */
-	public static GameWorld load(String path) throws IOException {
-		
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream(new File(path)));
-		GameWorld w;
-		
-		try {
-			
-			w = (GameWorld)in.readObject();
-			in.close();
-			
-		}
-		catch (ClassNotFoundException e) {
-			w = null;
-		}
-		
-		return w;
 	}
 	
 }

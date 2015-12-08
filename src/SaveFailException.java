@@ -1,35 +1,36 @@
+import java.io.IOException;
+
 /**
- * This class is used as a flag to notify functions
- * that an invalid command has been passed.
+ * Exception which indicates an error saving or loading
+ * a GameWorld. Thrown by the methods in the TextUtils
+ * class.
  * 
  * @author Steven Bertolucci
- * @version 0.1 (incomplete)
+ * @version 1.0 December 6th, 2015
  *
  */
-public class InvalidSyntaxException extends Throwable {
-		
+public class SaveFailException extends IOException {
 
 	/**
 	 * The version of the class for serializing purposes
 	 */
 	private static final long serialVersionUID = 1L;
 	
-
 	/**
 	 * Explicit zero-argument call to superconstructor
 	 */
-	public InvalidSyntaxException() {
+	public SaveFailException() {
 		super();
 	}
-
+	
 	/**
 	 * Explicit constructor for constructing an exception
 	 * with a message.
 	 * 
 	 * @param message a more detailed error message
 	 */
-	public InvalidSyntaxException(String message) {
+	public SaveFailException(String message) {
 		super(message);
 	}
-		
+
 }
