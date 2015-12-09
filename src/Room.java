@@ -5,6 +5,7 @@ public class Room {
 	char[][] room;
 	ArrayList<WorldObject> objects;
 	ArrayList<UseableWorldObject> gameObjects;
+	ArrayList<Container> containers;
 	
 	/*
 	 * Room constructor
@@ -15,6 +16,8 @@ public class Room {
 		room = new char[5][20];
 		objects = new ArrayList<WorldObject>();
 		gameObjects =  new ArrayList<UseableWorldObject>();
+		containers =  new ArrayList<Container>();
+		
 		try(
 			FileReader in = new FileReader(new File(rFile));
 		){
@@ -38,9 +41,24 @@ public class Room {
 			){
 				String line = in.readLine();
 				WorldObject temp;
-				while(!(line.equals("end"))){
-					temp = new WorldObject(line.charAt(0),line.substring(4),line.substring(2, 3).equals("1"));
+				while(!(line.equals("End World Objects"))){
+					temp = new WorldObject(line.charAt(0), line.substring(2, 3).equals("1"), line.substring(4));
 					objects.add(temp);
+					line = in.readLine();
+				}
+				
+				line = in.readLine();
+				while(!(line.equals("End Containers"))){
+					temp = new Container(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(3));
+					containers.add((Container)temp);
+					line = in.readLine();
+				}
+				
+				line = in.readLine();
+				while(!(line.equals("End of File"))){
+					temp = new UseableWorldObject(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)),
+							line.charAt(4), line.substring(6, 7).equals("1"), line.substring(8), in.readLine(), in.readLine(), in.readLine());
+					gameObjects.add((UseableWorldObject)temp);
 					line = in.readLine();
 				}
 			}
@@ -56,7 +74,18 @@ public class Room {
 			}
 			System.out.println();
 		}
+		System.out.println("WorldObjects");
 		for(WorldObject i: objects){
+			System.out.println(i);
+		}
+		
+		System.out.println("Containers");
+		for(Container i: containers){
+			System.out.println(i);
+		}
+		
+		System.out.println("UseableWorldObjects");
+		for(UseableWorldObject i: gameObjects){
 			System.out.println(i);
 		}
 	}

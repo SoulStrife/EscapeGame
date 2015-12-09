@@ -7,9 +7,9 @@ public class UseableWorldObject extends WorldObject {
 	private int x;
 	private int y;
 	
-	public UseableWorldObject(char icon,int x, int y, String descrip, boolean useable,
+	public UseableWorldObject(int x, int y, char icon, boolean useable, String descrip,
 			String sUsed,String fUsed,String tool){
-		super(icon, descrip, useable);
+		super(icon, useable, descrip);
 		this.x = x;
 		this.y = y;
 		this.sUsed = sUsed;
@@ -21,7 +21,7 @@ public class UseableWorldObject extends WorldObject {
 	 * Constructor for temp WorldObject for finding objects in ArrayList
 	 */
 	public UseableWorldObject(int x, int y){
-		super(' ',"",false);
+		super(' ', false, "");
 		this.x = x;
 		this.y = y;
 	}
@@ -47,5 +47,9 @@ public class UseableWorldObject extends WorldObject {
 		}
 		
 		return (x == ((UseableWorldObject)o).getX()) && (y == ((UseableWorldObject)o).getY());
+	}
+	
+	public String toString(){
+		return super.toString() + " " + x + " " + y + "\n" + sUsed + "\n" + fUsed + "\n" + tool;
 	}
 }

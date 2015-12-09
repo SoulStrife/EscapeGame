@@ -6,7 +6,7 @@ public class WorldObject {
 	private boolean useable;	//true if object is useable
 	
 	
-	public WorldObject(char icon, String descrip, boolean useable){
+	public WorldObject(char icon, boolean useable, String descrip){
 		this.icon = icon;
 		this.descrip = descrip;
 		this.useable = useable;
