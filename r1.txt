@@ -7,12 +7,12 @@ ____________________
 _ 0 wall
 o 0 floor
 c 1 container
-C 1 generator
+G 1 generator
 End World Objects
 2 3 Screwdriver
 End Containers
 2 7 G 1 generator
 The generator hums to life
-You need generator parts
-generator parts
+You need a Screwdriver
+Screwdriver
 End of File

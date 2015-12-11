@@ -57,7 +57,7 @@ public class Room {
 				
 				line = in.readLine();
 				while(!(line.equals("End Containers"))){
-					temp = new Container(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(3));
+					temp = new Container(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(4));
 					containers.add((Container)temp);
 					line = in.readLine();
 				}
@@ -128,7 +128,7 @@ public class Room {
 			
 			boolean matched = false;
 			
-			WorldObject temp = new UseableWorldObject(room[p.getY()][p.getX() + count], p.getX(), p.getY() + count);
+			WorldObject temp = new UseableWorldObject(room[p.getY()][p.getX() + count], p.getX() + count, p.getY());
 			if(gameObjects.indexOf(temp) != -1){
 				currentLoc = gameObjects.get(gameObjects.indexOf(temp));
 				room[p.getY()][p.getX() + count] = Player.ICON;
@@ -167,7 +167,7 @@ public class Room {
 				room[p.getY()][p.getX() + count] = Player.ICON;
 				matched = true;
 			}
-			System.out.println("x:" + p.getX() + "y: " + p.getY() + count);
+			
 			temp = new Container(p.getX() + count, p.getY());
 			if(!matched && (containers.indexOf(temp) != -1)){
 				currentLoc = containers.get(containers.indexOf(temp));
@@ -269,6 +269,25 @@ public class Room {
 		if((objects.indexOf(temp) != -1)){
 			currentLoc = objects.get(objects.indexOf(temp));
 			room[x][y] = Player.ICON;
+		}
+	}
+	
+	public String openContainer(Player p){
+		if (currentLoc instanceof Container) {
+			String temp;
+			temp = ((Container)currentLoc).isOpened();
+			p.addTool(temp);
+			return "You open the container and find " + temp;
+		} else {
+			return "There is no container to open";
+		}
+	}
+	
+	public String useObject(Player p){
+		if (currentLoc instanceof UseableWorldObject) {
+			return ((UseableWorldObject)currentLoc).isUsed(p.getInventory());
+		} else {
+			return "There is no object to use";
 		}
 	}
 }
