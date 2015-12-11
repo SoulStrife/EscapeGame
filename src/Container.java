@@ -11,6 +11,13 @@ public class Container extends WorldObject{
 		this.contains = contains;
 	}
 	
+	public Container(int y, int x){
+		super('C', true, "Container");
+		this.x = x;
+		this.y = y;
+		contains = null;
+	}
+	
 	public String isOpened(){
 		return contains;
 	}
@@ -25,5 +32,13 @@ public class Container extends WorldObject{
 	
 	public String toString(){
 		return x + " " + y + " " + contains;
+	}
+	
+	public boolean equals(Object o){
+		if(!(o instanceof WorldObject)){
+			return false;
+		}
+		
+		return (x == ((Container)o).getX()) && (y == ((Container)o).getY()) && (this.getIcon() == ((WorldObject)o).getIcon());
 	}
 }

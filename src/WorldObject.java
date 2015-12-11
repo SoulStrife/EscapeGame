@@ -11,6 +11,12 @@ public class WorldObject {
 		this.descrip = descrip;
 		this.useable = useable;
 	}
+	
+	public WorldObject(char icon){
+		this.icon = icon;
+		this.descrip = null;
+		this.useable = false;
+	}
 
 	public char getIcon(){
 		return icon;
@@ -24,7 +30,7 @@ public class WorldObject {
 		return useable;
 	}
 	
-	public boolean isEquals(Object o){
+	public boolean equals(Object o){
 		if(!(o instanceof WorldObject)){
 			return false;
 		}

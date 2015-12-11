@@ -4,6 +4,7 @@ public class Player {
 	private ArrayList<String> inventory;		//Player inventory, holds tools
 	private int x;								//x coordinate of player
 	private int y;								//y coordinate of player
+	private String currentRoom;
 	
 	public static char ICON = 'p';				//player icon
 	
@@ -12,7 +13,7 @@ public class Player {
 	 * @param x x coordinate of player
 	 * @param y y coordinate of player
 	 */
-	public Player(int x, int y){
+	public Player(int y, int x){
 		inventory = new ArrayList<String>();
 		this.x = x;
 		this.y = y;
@@ -23,11 +24,13 @@ public class Player {
 	 * @param x x coordinate of player
 	 * @param y y coordinate of player
 	 * @param inventory Player's inventory
+	 * @param current current room player is in
 	 */
-	public Player(int x, int y, ArrayList<String> inventory){
+	public Player(int y, int x, ArrayList<String> inventory, String currentRoom){
 		this.inventory = inventory;
 		this.x = x;
 		this.y = y;
+		this.currentRoom = currentRoom;
 	}
 	
 	/*
@@ -44,6 +47,22 @@ public class Player {
 	 */
 	public void addTool(String tool){
 		inventory.add(tool);
+	}
+	
+	/*
+	 * Gets player's current room
+	 * @return current room name
+	 */
+	public String getRoom(){
+		return currentRoom;
+	}
+	
+	/*
+	 * Sets player's current room
+	 * @param new rooms name
+	 */
+	public String getRoom(String currentRoom){
+		return this.currentRoom = currentRoom;
 	}
 	
 	/*

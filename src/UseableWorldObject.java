@@ -20,8 +20,8 @@ public class UseableWorldObject extends WorldObject {
 	/*
 	 * Constructor for temp WorldObject for finding objects in ArrayList
 	 */
-	public UseableWorldObject(int x, int y){
-		super(' ', false, "");
+	public UseableWorldObject(char icon, int y, int x){
+		super(icon, false, "");
 		this.x = x;
 		this.y = y;
 	}
@@ -41,12 +41,12 @@ public class UseableWorldObject extends WorldObject {
 		return fUsed;
 	}
 	
-	public boolean isEquals(Object o){
-		if(!this.equals(o)){
+	public boolean equals(Object o){
+		if(!(o instanceof UseableWorldObject)){
 			return false;
 		}
 		
-		return (x == ((UseableWorldObject)o).getX()) && (y == ((UseableWorldObject)o).getY());
+		return (x == ((UseableWorldObject)o).getX()) && (y == ((UseableWorldObject)o).getY()) && (this.getIcon() == ((WorldObject)o).getIcon());
 	}
 	
 	public String toString(){
