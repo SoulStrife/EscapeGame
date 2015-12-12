@@ -35,7 +35,7 @@ public class Container extends WorldObject{
 	}
 	
 	public boolean equals(Object o){
-		if(!(o instanceof WorldObject)){
+		if(!(o instanceof Container)){
 			return false;
 		}
 		
