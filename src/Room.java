@@ -344,4 +344,12 @@ public class Room {
 			return "There is no object to use";
 		}
 	}
+	
+	public String exit(Player p){
+		if (currentLoc instanceof Exit) {
+			return ((Exit)currentLoc).getRoom();
+		} else {
+			return "There is no door";
+		}
+	}
 }
