@@ -7,6 +7,7 @@ public class Room {
 	ArrayList<WorldObject> objects;
 	ArrayList<UseableWorldObject> gameObjects;
 	ArrayList<Container> containers;
+	ArrayList<Exit> exits;
 	WorldObject currentLoc;
 	
 	/*
@@ -19,6 +20,7 @@ public class Room {
 		objects = new ArrayList<WorldObject>();
 		gameObjects =  new ArrayList<UseableWorldObject>();
 		containers =  new ArrayList<Container>();
+		exits =  new ArrayList<Exit>();
 		currentLoc = null;
 		name = "";
 		
@@ -57,15 +59,45 @@ public class Room {
 				
 				line = in.readLine();
 				while(!(line.equals("End Containers"))){
-					temp = new Container(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(4));
+					ArrayList<String> tempStrings = new ArrayList<String>(); 
+					for(int i = 0; i < 2; i++){
+						tempStrings.add(line.substring(0, line.indexOf(' ')));
+						line = line.substring(line.indexOf(' ') + 1);
+					}
+						
+					temp = new Container(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)), line);
 					containers.add((Container)temp);
 					line = in.readLine();
 				}
 				
 				line = in.readLine();
+				while(!(line.equals("End Exits"))){
+					ArrayList<String> tempStrings = new ArrayList<String>(); 
+					for(int i = 0; i < 4; i++){
+						tempStrings.add(line.substring(0, line.indexOf(' ')));
+						line = line.substring(line.indexOf(' ') + 1);
+					}
+					
+					temp = new Exit(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)), line, Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)));
+					
+					//temp = new Exit(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(8), Integer.parseInt(line.substring(4, 5)), Integer.parseInt(line.substring(6, 7)));
+					exits.add((Exit)temp);
+					line = in.readLine();
+				}
+				
+				line = in.readLine();
 				while(!(line.equals("End of File"))){
-					temp = new UseableWorldObject(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)),
-							line.charAt(4), line.substring(6, 7).equals("1"), line.substring(8), in.readLine(), in.readLine(), in.readLine());
+					ArrayList<String> tempStrings = new ArrayList<String>(); 
+					for(int i = 0; i < 4; i++){
+						tempStrings.add(line.substring(0, line.indexOf(' ')));
+						line = line.substring(line.indexOf(' ') + 1);
+					}
+					
+					temp = new UseableWorldObject(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)),
+							tempStrings.remove(0).charAt(0), tempStrings.remove(0).equals("1"), line, in.readLine(), in.readLine(), in.readLine());
+					
+					/*temp = new UseableWorldObject(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)),
+							line.charAt(4), line.substring(6, 7).equals("1"), line.substring(8), in.readLine(), in.readLine(), in.readLine());*/
 					gameObjects.add((UseableWorldObject)temp);
 					line = in.readLine();
 				}
@@ -142,6 +174,13 @@ public class Room {
 				matched = true;
 			}
 			
+			temp = new Exit(p.getX() + count, p.getY());
+			if(!matched &&(exits.indexOf(temp) != -1)){
+				currentLoc = exits.get(exits.indexOf(temp));
+				room[p.getY()][p.getX() + count] = Player.ICON;
+				matched = true;
+			}
+			
 			temp = new WorldObject(room[p.getY()][p.getX() + count]);
 			if(!matched && (objects.indexOf(temp) != -1)){
 				currentLoc = objects.get(objects.indexOf(temp));
@@ -171,6 +210,13 @@ public class Room {
 			temp = new Container(p.getX() + count, p.getY());
 			if(!matched && (containers.indexOf(temp) != -1)){
 				currentLoc = containers.get(containers.indexOf(temp));
+				room[p.getY()][p.getX() + count] = Player.ICON;
+				matched = true;
+			}
+			
+			temp = new Exit(p.getX() + count, p.getY());
+			if(!matched &&(exits.indexOf(temp) != -1)){
+				currentLoc = exits.get(exits.indexOf(temp));
 				room[p.getY()][p.getX() + count] = Player.ICON;
 				matched = true;
 			}
@@ -208,6 +254,13 @@ public class Room {
 				matched = true;
 			}
 			
+			temp = new Exit(p.getX() + count, p.getY());
+			if(!matched &&(exits.indexOf(temp) != -1)){
+				currentLoc = exits.get(exits.indexOf(temp));
+				room[p.getY() + count][p.getX()] = Player.ICON;
+				matched = true;
+			}
+			
 			temp = new WorldObject(room[p.getY() + count][p.getX()]);
 			if(!matched && (objects.indexOf(temp) != -1)){
 				currentLoc = objects.get(objects.indexOf(temp));
@@ -241,6 +294,13 @@ public class Room {
 				matched = true;
 			}
 			
+			temp = new Exit(p.getX() + count, p.getY());
+			if(!matched &&(exits.indexOf(temp) != -1)){
+				currentLoc = exits.get(exits.indexOf(temp));
+				room[p.getY() + count][p.getX()] = Player.ICON;
+				matched = true;
+			}
+			
 			temp = new WorldObject(room[p.getY() + count][p.getX()]);
 			if(!matched && (objects.indexOf(temp) != -1)){
 				currentLoc = objects.get(objects.indexOf(temp));
@@ -253,19 +313,13 @@ public class Room {
 	
 	public void createPlayer(int x, int y){
 		
-		/*WorldObject temp = new UseableWorldObject(room[x][y], x, y);
-		if(gameObjects.indexOf(temp) != -1){
-			currentLoc = gameObjects.get(gameObjects.indexOf(temp));
-			matched = true;
+		WorldObject temp = new Exit(y, x);
+		if((exits.indexOf(temp) != -1)){
+			currentLoc = exits.get(exits.indexOf(temp));
+			room[x][y] = Player.ICON;
 		}
 		
-		temp = new Container(p.getX() + count, p.getY());
-		if(!matched &&(containers.indexOf(temp) != -1)){
-			currentLoc = containers.get(containers.indexOf(temp));
-			matched = true;
-		}*/
-		
-		WorldObject temp = new WorldObject(room[x][y]);
+		temp = new WorldObject(room[x][y]);
 		if((objects.indexOf(temp) != -1)){
 			currentLoc = objects.get(objects.indexOf(temp));
 			room[x][y] = Player.ICON;

@@ -25,6 +25,15 @@ public class Exit extends WorldObject{
 		roomY = -1;
 	}
 	
+	public Exit(int y, int x){
+		super('=',true,"Exit");
+		this.x = x;
+		this.y = y;
+		this.roomName = "";
+		roomX = -1;
+		roomY = -1;
+	}
+	
 	public int getX(){
 		return x;
 	}

@@ -15,24 +15,7 @@ public class temp {
 		r1.movePlayer(0, -2, p);
 		r1.printRoom();
 		
-		System.out.println(r1.openContainer(p));
-		System.out.println(r1.useObject(p));
-		r1.movePlayer(-4, 0, p);
-		r1.printRoom();
-		//r1.saveRoom("r1.txt");
-		System.out.println(r1.openContainer(p));
-		System.out.println(r1.useObject(p));
-		
-		r1.movePlayer(4, 0, p);
-		r1.printRoom();
-		
-		System.out.println(r1.openContainer(p));
-		System.out.println(r1.useObject(p));
-		
-		r1.movePlayer(0,-2,p);
-		r1.printRoom();
-		
-		r1.movePlayer(0, 2, p);
+		r1.movePlayer(12, 0, p);
 		r1.printRoom();
 	}
 
