@@ -130,7 +130,7 @@ public class GameWorld implements Serializable {
 					if (player.getRoom().equals("Outside")) {
 						isLoss = true;
 					}
-					else if (player.getRoom().equals("Observatory")) {
+					else if (player.getRoom().equals("Observation")) {
 						isWon = true;
 					}
 					return "Moved";
