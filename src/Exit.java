@@ -8,6 +8,7 @@ public class Exit extends WorldObject{
 	private String roomName;
 	private int roomX;
 	private int roomY;
+	private boolean check;
 	
 	public Exit(int x, int y, String roomName, int roomX, int roomY, String tool){
 		super('=',true,"Exit");
@@ -17,6 +18,7 @@ public class Exit extends WorldObject{
 		this.roomX = roomX;
 		this.roomY = roomY;
 		this.tool = tool;
+		check = false;
 	}
 	
 	public Exit(String roomName){
@@ -27,6 +29,7 @@ public class Exit extends WorldObject{
 		roomX = -1;
 		roomY = -1;
 		tool = "";
+		check = false;
 	}
 	
 	public Exit(int y, int x){
@@ -36,6 +39,7 @@ public class Exit extends WorldObject{
 		this.roomName = "";
 		roomX = -1;
 		roomY = -1;
+		check = false;
 	}
 	
 	public int getX(){
@@ -66,8 +70,13 @@ public class Exit extends WorldObject{
 		return (((Exit)o).getX() == x) && (((Exit)o).getY() == y);
 	}
 	
+	public boolean getCheck(){
+		return check;
+	}
+	
 	public String isUsed(ArrayList<String> inventory){
 		if(inventory.contains(tool)){
+			check = true;
 			return "The door opens";
 		}
 		return "You need: " + tool;
