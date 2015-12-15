@@ -71,6 +71,7 @@ public class GameWorld implements Serializable {
 		
 		//Initialize the player
 		player = new Player(START_Y, START_X, new ArrayList<String>(), START_ROOM);
+		player.addTool("Soul");
 		findRoom(player.getRoom()).createPlayer(START_Y, START_X);
 		System.out.print(player);
 	}
@@ -102,17 +103,58 @@ public class GameWorld implements Serializable {
 					//throw new InvalidSyntaxException();
 					e.printStackTrace();
 				}
-			case "EXIT" :
+			case "QUIT" :
 				assert (parsed.length == 1);
 				throw new GameExitException();
+			/*
+			case "EXIT" :
+				assert (parsed.length == 1);
+				String[] ret = findRoom(player.getRoom()).exit(player);
+				if (ret.length == 1) {
+					return ret[0];
+				}
+				else {
+					String roomTo = ret[0];
+					int x = Integer.parseInt(ret[1]);
+					int y = Integer.parseInt(ret[2]);
+					System.out.println(ret[1]);
+					System.out.println(ret[2]);
+					player.getRoom(roomTo);
+					System.out.println(x);
+					System.out.println("_");
+					System.out.println(y);
+					System.out.println("_");
+					findRoom(player.getRoom()).createPlayer(x,y);
+					findRoom(player.getRoom()).movePlayer(0, y, player);
+					findRoom(player.getRoom()).movePlayer(x, 0, player);
+					
+					return ret[0];
+				}
+			*/
+			case "EXIT" :
+				assert (parsed.length == 1);
+				Exit ex = findRoom(player.getRoom()).exit(player);
+				if (ex == null) {
+					return "There is no door.";
+				}
+				String roomTo = ex.getRoom();
+				int x = ex.getRoomX();
+				int y = ex.getRoomY();
+				
+				if (ex.getCheck()) {
+					player.getRoom(roomTo);
+					findRoom(player.getRoom()).createPlayer(x, y);
+					return "Moved";
+				}
+				else {
+					return "You need " + ex.getTool();
+				}
 			case "OPEN" :
 				assert (parsed.length == 1);
 				return findRoom(player.getRoom()).openContainer(player);
 			case "USE" :
 				assert (parsed.length == 2);
 				return findRoom(player.getRoom()).useObject(player);
-			case "USEEXIT" :
-				return findRoom(player.getRoom()).exit(player);
 			
 			case "SAVE" :
 				assert (parsed.length == 2);

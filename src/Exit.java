@@ -42,6 +42,10 @@ public class Exit extends WorldObject{
 		check = false;
 	}
 	
+	public String getTool() {
+		return tool;
+	}
+	
 	public int getX(){
 		return x;
 	}
