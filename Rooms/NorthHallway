@@ -1,22 +1,21 @@
                     
                     
                     
-***=****=***********
-*Cooooooooooooooooo*
-***************=****
+********=***********
+*oooooooooooooooooo*
+***=***********=****
                     
                     
-MedBay
+NorthHallway
 * 0 Wall
 o 0 Floor
 End World Objects
-4 1 Generator parts
 End Containers
-8 3 5 9 MedBay
-Security Badge
-3 3 15 6 EngineRoom
-Security Badge
-5 15 0 0 Outside
+3 8 0 0 Outside
 Soul
+5 3 1 10 SecurityRoom
+Power
+5 15 0 3 CargoBay
+Lockdown Lifted
 End Exits
 End of File

@@ -1,0 +1,25 @@
+********************
+*oooooooooooooooooo=
+*oooooooooooooooooo*
+*oooGoooooooooooooo*
+*oooooooooooooooooo*
+*Cooooooooooooooooo*
+***************=****
+                    
+EngineRoom
+* 0 Wall
+o 0 Floor
+End World Objects
+5 1 Crowbar
+End Containers
+15 6 3 3 SouthHallway
+Security Badge
+1 19 4 5 SecurityRoom
+Power
+End Exits
+3 4 G 1 Generator
+The Generator hums to life
+You need Generator parts
+Generator parts
+Power
+End of File
