@@ -13,11 +13,7 @@ B 0 Medical Bed
 End World Objects
 4 8 Security Badge
 End Containers
-<<<<<<< HEAD
-5 9 3 8 South Hallway
-=======
 5 9 8 3 SouthHallway
 Security Badge
->>>>>>> origin/master
 End Exits
 End of File

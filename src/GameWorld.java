@@ -71,6 +71,7 @@ public class GameWorld implements Serializable {
 		
 		//Initialize the player
 		player = new Player(START_Y, START_X, new ArrayList<String>(), START_ROOM);
+		player.addTool("Soul");
 		findRoom(player.getRoom()).createPlayer(START_Y, START_X);
 		System.out.print(player);
 	}
@@ -139,9 +140,15 @@ public class GameWorld implements Serializable {
 				String roomTo = ex.getRoom();
 				int x = ex.getRoomX();
 				int y = ex.getRoomY();
-				player.getRoom(roomTo);
-				findRoom(player.getRoom()).createPlayer(x, y);
-				return "Moved";
+				
+				if (ex.getCheck()) {
+					player.getRoom(roomTo);
+					findRoom(player.getRoom()).createPlayer(x, y);
+					return "Moved";
+				}
+				else {
+					return "You need " + ex.getTool();
+				}
 			case "OPEN" :
 				assert (parsed.length == 1);
 				return findRoom(player.getRoom()).openContainer(player);

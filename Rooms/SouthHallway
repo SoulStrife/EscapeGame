@@ -6,29 +6,17 @@
 ***************=****
                     
                     
-<<<<<<< HEAD
 South Hallway
 * 0 wall
 o 0 floor
-=======
-MedBay
-* 0 Wall
-o 0 Floor
->>>>>>> origin/master
 End World Objects
 4 1 Generator parts
 End Containers
-<<<<<<< HEAD
-3 8 5 9 MedBay
-3 3 0 0 Temp
-5 15 0 0 Space
-=======
 8 3 5 9 MedBay
 Security Badge
 3 3 15 6 EngineRoom
 Security Badge
 5 15 0 0 Outside
 Soul
->>>>>>> origin/master
 End Exits
 End of File
