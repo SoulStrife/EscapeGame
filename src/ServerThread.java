@@ -130,6 +130,14 @@ public class ServerThread implements Runnable {
 				}
 			}
 			
+			if (game.isLoss()) {
+				out.println("You were exposed to the vaccuum of space and died. You lose.");
+			}
+			
+			else if (game.isWon()) {
+				out.println("You made it! You win!");
+			}
+			
 			out.println("Thank you for playing!");
 		}
 		

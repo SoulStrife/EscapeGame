@@ -25,6 +25,8 @@ public class GameWorld implements Serializable {
 	private static final int START_X = 7;
 	private static final int START_Y = 4;
 	private static final String SAVE_FOLDER = "Saves";
+	private boolean isLoss = false;
+	private boolean isWon = false;
 	
 	private Player player;
 	
@@ -106,31 +108,6 @@ public class GameWorld implements Serializable {
 			case "QUIT" :
 				assert (parsed.length == 1);
 				throw new GameExitException();
-			/*
-			case "EXIT" :
-				assert (parsed.length == 1);
-				String[] ret = findRoom(player.getRoom()).exit(player);
-				if (ret.length == 1) {
-					return ret[0];
-				}
-				else {
-					String roomTo = ret[0];
-					int x = Integer.parseInt(ret[1]);
-					int y = Integer.parseInt(ret[2]);
-					System.out.println(ret[1]);
-					System.out.println(ret[2]);
-					player.getRoom(roomTo);
-					System.out.println(x);
-					System.out.println("_");
-					System.out.println(y);
-					System.out.println("_");
-					findRoom(player.getRoom()).createPlayer(x,y);
-					findRoom(player.getRoom()).movePlayer(0, y, player);
-					findRoom(player.getRoom()).movePlayer(x, 0, player);
-					
-					return ret[0];
-				}
-			*/
 			case "EXIT" :
 				assert (parsed.length == 1);
 				Exit ex = findRoom(player.getRoom()).exit(player);
@@ -143,7 +120,17 @@ public class GameWorld implements Serializable {
 				
 				if (ex.getCheck()) {
 					player.getRoom(roomTo);
+					player.setX(y);
+					player.setY(x);
 					findRoom(player.getRoom()).createPlayer(x, y);
+					System.out.println(player.getX());
+					System.out.println(player.getY());
+					if (player.getRoom().equals("Outside")) {
+						isLoss = true;
+					}
+					else if (player.getRoom().equals("Observatory")) {
+						isWon = true;
+					}
 					return "Moved";
 				}
 				else {
@@ -230,7 +217,7 @@ public class GameWorld implements Serializable {
 	 * @return true if the game has reached a win condition
 	 */
 	public boolean isWon() {
-		return false;
+		return isWon;
 	}
 	
 	/**
@@ -239,7 +226,7 @@ public class GameWorld implements Serializable {
 	 * @return true if the game has reached a loss condition
 	 */
 	public boolean isLoss() {
-		return false;
+		return isLoss;
 	}
 	
 	/**
