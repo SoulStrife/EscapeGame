@@ -411,15 +411,15 @@ public class Room {
 	 * @param p Player object
 	 * @return either a room or a message
 	 */
-	public String exit(Player p){
+	public Exit exit(Player p){
 		if (currentLoc instanceof Exit) {
 			if(((Exit)currentLoc).isUsed(p.getInventory()).equals("The door opens")) {
-				return ((Exit)currentLoc).getRoom();
+				return (Exit)currentLoc;
 			} else {
-				return ((Exit)currentLoc).isUsed(p.getInventory());
+				return (Exit)currentLoc;
 			}
 		} else {
-			return "There is no door";
+			return null;
 		}
 	}
 }
