@@ -241,7 +241,7 @@ public class Room {
 			
 			boolean matched = false;
 			
-			WorldObject temp = new UseableWorldObject(room[p.getY()][p.getX() + count], p.getX(), p.getY() + count);
+			WorldObject temp = new UseableWorldObject(room[p.getY()][p.getX() + count], p.getX() + count, p.getY());
 			if(gameObjects.indexOf(temp) != -1){
 				currentLoc = gameObjects.get(gameObjects.indexOf(temp));
 				room[p.getY()][p.getX() + count] = Player.ICON;
@@ -281,7 +281,7 @@ public class Room {
 			
 			boolean matched = false;
 			
-			WorldObject temp = new UseableWorldObject(room[p.getY() + count][p.getX()], p.getX() + count, p.getY());
+			WorldObject temp = new UseableWorldObject(room[p.getY() + count][p.getX()], p.getX(), p.getY() + count);
 			if(gameObjects.indexOf(temp) != -1){
 				currentLoc = gameObjects.get(gameObjects.indexOf(temp));
 				room[p.getY() + count][p.getX()] =  Player.ICON;

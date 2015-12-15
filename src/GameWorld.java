@@ -117,6 +117,8 @@ public class GameWorld implements Serializable {
 				String roomTo = ex.getRoom();
 				int x = ex.getRoomX();
 				int y = ex.getRoomY();
+				player.setX(y);
+				player.setY(x);
 				
 				if (ex.getCheck()) {
 					player.getRoom(roomTo);
