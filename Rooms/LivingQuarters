@@ -1,0 +1,21 @@
+***********         
+*BoooBooCB*         
+*ooooooooo*         
+*BoooooooB*         
+*ooooooooo*         
+=ooooooooo=         
+*ooooooooo*         
+***********         
+LivingQuarters
+* 0 Wall
+o 0 Floor
+B 0 Bed
+End World Objects
+1 8 Bridge Officer Badge
+End Containers
+5 0 5 19 CargoBay
+Crowbar
+5 10 5 0 MessHall
+Security Badge
+End Exits
+End of File

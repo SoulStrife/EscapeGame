@@ -13,7 +13,7 @@ B 0 Medical Bed
 End World Objects
 4 8 Security Badge
 End Containers
-5 9 8 3 SouthHallway
+5 9 3 8 SouthHallway
 Security Badge
 End Exits
 End of File

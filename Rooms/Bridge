@@ -1,0 +1,26 @@
+                    
+     **********     
+     *&&oooo&&*     
+     *Coocoooo=     
+     *&&oooo&&*     
+     *****=****     
+                    
+                    
+Bridge
+* 0 Wall
+o 0 Floor
+& 0 Console
+End World Objects
+3 6 Captian's Badge
+End Containers
+5 10 1 10 Communications
+Bridge Officer Badge
+3 14 3 0 Observation
+Access
+End Exits
+3 9 c 1 Captian's Chair
+You punch in the coordinates and tell the ship to jump, You should go to the observation deck
+You need the Captian's Badge
+Captian's Badge
+Access
+End of File

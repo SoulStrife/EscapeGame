@@ -1,0 +1,20 @@
+                    
+     *****=****     
+     *&&&ooo&&*     
+     *&oooooo&*     
+     =oooooo&&*     
+     **********     
+                    
+                    
+Communications
+* 0 Wall
+o 0 Floor
+& 0 Console
+End World Objects
+End Containers
+1 10 5 10 Bridge
+Bridge Officer Badge
+4 5 5 10 MessHall
+Bridge Officer Badge
+End Exits
+End of File

@@ -1,0 +1,20 @@
+***********         
+*ooooooooo*         
+*ooToooToo*         
+*ooToooToo*         
+*ooToooToo*         
+=ooooooooo=         
+*ooooooooo*         
+***********         
+LivingQuarters
+* 0 Wall
+o 0 Floor
+T 0 Table
+End World Objects
+End Containers
+5 0 5 10 LivingQuarters
+Security Badge
+5 10 4 5 Communications
+Bridge Officer Badge
+End Exits
+End of File

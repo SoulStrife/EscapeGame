@@ -1,0 +1,26 @@
+***=****************
+*ooooobbbbbbbbooooo*
+*oooooooooooooooooo*
+*oooCbbbbDbbbCooooo*
+*oooooooooooooooooo*
+*oooCTbbbbbbbCooooo=
+*oooooooooooooooooo*
+********************
+CargoBay
+* 0 Wall
+o 0 Floor
+b 0 Box
+T o Tardis
+D o Delorean
+End World Objects
+3 4 Crowbar
+5 4 Tri-Corder
+3 13 Phaser
+5 13 Light Saber
+End Containers
+0 3 5 15 NorthHallway
+Lockdown Lifted
+5 19 5 0 LivingQuarters
+Crowbar
+End Exits
+End of File
