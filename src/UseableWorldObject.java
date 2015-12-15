@@ -4,17 +4,19 @@ public class UseableWorldObject extends WorldObject {
 	private String sUsed;		//message returned when successfully used
 	private String fUsed;		//message returned when unsuccessfully used
 	private String tool;		//tool used for object to be successfully used
+	private String gainedTool;
 	private int x;
 	private int y;
 	
 	public UseableWorldObject(int x, int y, char icon, boolean useable, String descrip,
-			String sUsed,String fUsed,String tool){
+			String sUsed, String fUsed, String tool, String gainedTool){
 		super(icon, useable, descrip);
 		this.x = x;
 		this.y = y;
 		this.sUsed = sUsed;
 		this.fUsed = fUsed;
 		this.tool = tool;
+		this.gainedTool = gainedTool;
 	}
 	
 	/*
@@ -36,6 +38,7 @@ public class UseableWorldObject extends WorldObject {
 	
 	public String isUsed(ArrayList<String> inventory){
 		if(inventory.contains(tool)){
+			inventory.add(gainedTool);
 			return sUsed;
 		}
 		return fUsed;

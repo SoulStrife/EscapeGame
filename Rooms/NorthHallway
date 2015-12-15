@@ -1,0 +1,21 @@
+                    
+                    
+                    
+********=***********
+*oooooooooooooooooo*
+***=***********=****
+                    
+                    
+NorthHallway
+* 0 Wall
+o 0 Floor
+End World Objects
+End Containers
+3 8 0 0 Outside
+Soul
+5 3 1 10 SecurityRoom
+Power
+5 15 0 3 CargoBay
+Lockdown Lifted
+End Exits
+End of File

@@ -1,19 +1,22 @@
+import java.util.ArrayList;
 
 public class Exit extends WorldObject{
 	private int x;
 	private int y;
+	private String tool;
 	
 	private String roomName;
 	private int roomX;
 	private int roomY;
 	
-	public Exit(int x, int y, String roomName, int roomX, int roomY){
+	public Exit(int x, int y, String roomName, int roomX, int roomY, String tool){
 		super('=',true,"Exit");
 		this.x = x;
 		this.y = y;
 		this.roomName = roomName;
 		this.roomX = roomX;
 		this.roomY = roomY;
+		this.tool = tool;
 	}
 	
 	public Exit(String roomName){
@@ -23,6 +26,7 @@ public class Exit extends WorldObject{
 		this.roomName = roomName;
 		roomX = -1;
 		roomY = -1;
+		tool = "";
 	}
 	
 	public Exit(int y, int x){
@@ -60,5 +64,12 @@ public class Exit extends WorldObject{
 		}
 		
 		return (((Exit)o).getX() == x) && (((Exit)o).getY() == y);
+	}
+	
+	public String isUsed(ArrayList<String> inventory){
+		if(inventory.contains(tool)){
+			return "The door opens";
+		}
+		return "You need: " + tool;
 	}
 }

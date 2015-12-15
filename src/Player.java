@@ -8,7 +8,7 @@ public class Player {
 	
 	public static char ICON = 'p';				//player icon
 	
-	/*
+	/**
 	 * Constructor for player
 	 * @param x x coordinate of player
 	 * @param y y coordinate of player
@@ -19,7 +19,7 @@ public class Player {
 		this.y = y;
 	}
 	
-	/*
+	/**
 	 * Constructor for player
 	 * @param x x coordinate of player
 	 * @param y y coordinate of player
@@ -33,7 +33,7 @@ public class Player {
 		this.currentRoom = currentRoom;
 	}
 	
-	/*
+	/**
 	 * Returns players inventory
 	 * @return Player's inventory
 	 */
@@ -41,7 +41,7 @@ public class Player {
 		return inventory;
 	}
 	
-	/*
+	/**
 	 * Adds tool to player's inventory
 	 * @param tool tool to be added
 	 */
@@ -49,7 +49,7 @@ public class Player {
 		inventory.add(tool);
 	}
 	
-	/*
+	/**
 	 * Gets player's current room
 	 * @return current room name
 	 */
@@ -57,7 +57,7 @@ public class Player {
 		return currentRoom;
 	}
 	
-	/*
+	/**
 	 * Sets player's current room
 	 * @param new rooms name
 	 */
@@ -65,7 +65,7 @@ public class Player {
 		return this.currentRoom = currentRoom;
 	}
 	
-	/*
+	/**
 	 * Returns x coordinate of player
 	 * @return x coordinate of player
 	 */
@@ -73,7 +73,7 @@ public class Player {
 		return x;
 	}
 	
-	/*
+	/**
 	 * Returns y coordinate of player
 	 * @return y coordinate of player
 	 */
@@ -81,7 +81,7 @@ public class Player {
 		return y;
 	}
 	
-	/*
+	/**
 	 * Adds dx to x coordinate of player
 	 * @param dx value to be added to player
 	 */
@@ -89,7 +89,7 @@ public class Player {
 		x += dx;
 	}
 	
-	/*
+	/**
 	 * Adds dy to y coordinate of player
 	 * @param dy value to be added to player
 	 */
@@ -97,7 +97,7 @@ public class Player {
 		y += dy;
 	}
 	
-	/*
+	/**
 	 * Sets a new value for the x coordinate
 	 * @param x new x value
 	 */
@@ -105,7 +105,7 @@ public class Player {
 		this.x = x;
 	}
 	
-	/*
+	/**
 	 * Sets a new value for the y coordinate
 	 * @param y new y value
 	 */

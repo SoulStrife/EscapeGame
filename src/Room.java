@@ -10,7 +10,7 @@ public class Room {
 	ArrayList<Exit> exits;
 	WorldObject currentLoc;
 	
-	/*
+	/**
 	 * Room constructor
 	 * 
 	 * @param file the file to be opened that contains the room
@@ -22,17 +22,16 @@ public class Room {
 		containers =  new ArrayList<Container>();
 		exits =  new ArrayList<Exit>();
 		currentLoc = null;
-		name = "";
 		
 		try(
 				BufferedReader in = new BufferedReader(new FileReader(rFile));
 		){
-			
+			//reads in room
 			int c;
 			for(int i = 0; i < room.length; i++){
 				for(int x = 0; x < room[0].length; x++){
 					if((c = in.read()) != -1){
-						if(c == 13 || c == 10){
+						if(c == 13 || c == 10){ // skips escape and carriage return characters
 							x--;
 						}
 						else{
@@ -47,10 +46,15 @@ public class Room {
 		try(
 				BufferedReader in = new BufferedReader(new FileReader(rFile));
 			){
+				//skips room
 				for(int i = 0; i < room.length; i++){
 					in.readLine();
 				}
+				
+				//read in room name
 				name = in.readLine();
+				
+				//read in World Objects
 				String line = in.readLine();
 				WorldObject temp;
 				while(!(line.equals("End World Objects"))){
@@ -59,6 +63,7 @@ public class Room {
 					line = in.readLine();
 				}
 				
+				//read in Containers
 				line = in.readLine();
 				while(!(line.equals("End Containers"))){
 					ArrayList<String> tempStrings = new ArrayList<String>(); 
@@ -72,6 +77,7 @@ public class Room {
 					line = in.readLine();
 				}
 				
+				//read in Exits
 				line = in.readLine();
 				while(!(line.equals("End Exits"))){
 					ArrayList<String> tempStrings = new ArrayList<String>(); 
@@ -80,13 +86,12 @@ public class Room {
 						line = line.substring(line.indexOf(' ') + 1);
 					}
 					
-					temp = new Exit(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)), line, Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)));
-					
-					//temp = new Exit(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)), line.substring(8), Integer.parseInt(line.substring(4, 5)), Integer.parseInt(line.substring(6, 7)));
+					temp = new Exit(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)), line, Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)), in.readLine());
 					exits.add((Exit)temp);
 					line = in.readLine();
 				}
 				
+				//read in Usable World Objects
 				line = in.readLine();
 				while(!(line.equals("End of File"))){
 					ArrayList<String> tempStrings = new ArrayList<String>(); 
@@ -96,17 +101,14 @@ public class Room {
 					}
 					
 					temp = new UseableWorldObject(Integer.parseInt(tempStrings.remove(0)), Integer.parseInt(tempStrings.remove(0)),
-							tempStrings.remove(0).charAt(0), tempStrings.remove(0).equals("1"), line, in.readLine(), in.readLine(), in.readLine());
-					
-					/*temp = new UseableWorldObject(Integer.parseInt(line.substring(0, 1)), Integer.parseInt(line.substring(2, 3)),
-							line.charAt(4), line.substring(6, 7).equals("1"), line.substring(8), in.readLine(), in.readLine(), in.readLine());*/
+							tempStrings.remove(0).charAt(0), tempStrings.remove(0).equals("1"), line, in.readLine(), in.readLine(), in.readLine(), in.readLine());
 					gameObjects.add((UseableWorldObject)temp);
 					line = in.readLine();
 				}
 			}
 	}
-	/*
-	/*
+
+	/**
 	 * Prints the room
 	*/
 	public void aprintRoom(){
@@ -122,6 +124,10 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Returns a string of the room
+	 * @return string of room
+	 */
 	public String toString() {
 		String out = "";
 		for (int i = 0; i < room.length; i++){
@@ -131,6 +137,7 @@ public class Room {
 			out += "\n\r";
 		}
 		
+		out += name + "\n\r";
 		if(currentLoc != null){
 			out += (currentLoc.getIcon() + ": " + currentLoc.getDecription()) + "\n\r";
 		}
@@ -138,11 +145,15 @@ public class Room {
 		return out;
 	}
 	
+	/**
+	 * Returns room array
+	 * @return room array
+	 */
 	public char[][] getChars() {
 		return room;
 	}
 	
-	/*
+	/**
 	 * Gets the name of room
 	 * @param name of room
 	 */
@@ -150,7 +161,7 @@ public class Room {
 		return name;
 	}
 	
-	/*
+	/**
 	 * Saves the room to specified file
 	 * 
 	 * @param file the file the room will be saved to
@@ -169,7 +180,15 @@ public class Room {
 	public void printCurrentLoc(){
 		System.out.println(currentLoc);
 	}
-	
+
+	/**
+	 * Moves player around the map
+	 * *note* can only have one of either dx or dy a value != 0 at a time
+	 * 
+	 * @param dx change in x value
+	 * @param dy change in y value
+	 * @param p Player object
+	 */
 	public void movePlayer(int dx, int dy, Player p){
 		if (dx > 0) {
 			int count = 0;
@@ -333,6 +352,12 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Creates player at x, y value
+	 * 
+	 * @param x x coordinate of player
+	 * @param y y coordinate of player
+	 */
 	public void createPlayer(int x, int y){
 		
 		WorldObject temp = new Exit(y, x);
@@ -348,6 +373,12 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Sees if player is at a Container and opens it
+	 * 
+	 * @param p Player object
+	 * @return Message of what player finds
+	 */
 	public String openContainer(Player p){
 		if (currentLoc instanceof Container) {
 			String temp;
@@ -359,6 +390,12 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Sees if player is at a usable object and sees if player can use it
+	 * 
+	 * @param p Player object
+	 * @return Message of whether successful or not
+	 */
 	public String useObject(Player p){
 		if (currentLoc instanceof UseableWorldObject) {
 			return ((UseableWorldObject)currentLoc).isUsed(p.getInventory());
@@ -367,17 +404,22 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Sees if player is at an exit and if he can use it
+	 * Check ArrayList of rooms first and if not found printout message
+	 * 
+	 * @param p Player object
+	 * @return either a room or a message
+	 */
 	public String exit(Player p){
 		if (currentLoc instanceof Exit) {
-			return ((Exit)currentLoc).getRoom();
+			if(((Exit)currentLoc).isUsed(p.getInventory()).equals("The door opens")) {
+				return ((Exit)currentLoc).getRoom();
+			} else {
+				return ((Exit)currentLoc).isUsed(p.getInventory());
+			}
 		} else {
 			return "There is no door";
 		}
-	}
-	
-	public static void main(String[] args) throws IOException {
-		Room r = new Room("Rooms\\MedBay");
-		System.out.println(r);
-		//r.aprintRoom();
 	}
 }

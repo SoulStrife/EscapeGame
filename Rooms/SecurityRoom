@@ -1,0 +1,26 @@
+                    
+     *****=****     
+     *&&Cooo&&*     
+     *oooooooo*     
+     =ooooooo%*     
+     **********     
+                    
+                    
+SecurityRoom
+* 0 Wall
+o 0 Floor
+& 0 Console
+End World Objects
+2 8 Security Officer Badge
+End Containers
+4 5 1 19 Engine Room
+Power
+1 10 5 3 NorthHallway
+Power
+End Exits
+4 13 % 1 Security Console
+Ship no longer in Lock Down
+You need a Security Officer Badge
+Security Officer Badge
+Lockdown Lifted
+End of File
