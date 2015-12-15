@@ -6,12 +6,14 @@
 ***************=****
                     
                     
-MedBay
+South Hallway
 * 0 wall
 o 0 floor
 End World Objects
 4 1 Generator Parts
 End Containers
-8 3 5 8 Medbay
+3 8 5 9 MedBay
+3 3 0 0 Temp
+5 15 0 0 Space
 End Exits
 End of File
