@@ -83,17 +83,16 @@ public class ServerThread implements Runnable {
 					
 					out.println("Please enter the name of your save file.");
 					String saveName = in.readLine();
-					//parse the number into some path
 					
 					if (saveName == null) {
 						throw new IOException(); //The connection has been lost
 					}
 					
 					try {
-						game = TextUtils.load(saveName);
+						game = GameWorld.load(saveName);
 						break;
 					} catch (IOException e) {
-						out.println("Save file not found. Please enter a valid name.");
+						out.println("Save file not found. Please enter a valid name. Valid names are:\n" + GameWorld.getSaveList());
 						continue loadGame;
 					}
 				}
@@ -114,13 +113,16 @@ public class ServerThread implements Runnable {
 					
 					try {
 						
-						game.parseAndUpdate(command);
+						out.println(game.parseAndUpdate(command));
 						
 					} catch (InvalidSyntaxException e) {
 						
 						out.println("Invalid command, syntax should be \"ACTION OBJECT\"");
 						continue validCommandLoop;
 						
+					} catch (GameExitException e) {
+						out.println("Game successfully exited.");
+						break gameLoop;
 					}
 					
 					break validCommandLoop;
@@ -131,8 +133,9 @@ public class ServerThread implements Runnable {
 			out.println("Thank you for playing!");
 		}
 		
-		catch (IOException e) {
-			System.err.println("Error in stream, thread terminating");
+		catch (IOException | NullPointerException e) {
+			//System.err.println("Error in stream, thread terminating");
+			e.printStackTrace();
 		}
 	}
 }

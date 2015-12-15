@@ -3,6 +3,10 @@
 *ooCoooGooooooooooo=
 *oooooooooooooooooo*
 ********************
+                    
+                    
+                    
+TEMPROOM
 * 0 wall
 o 0 floor
 c 1 container

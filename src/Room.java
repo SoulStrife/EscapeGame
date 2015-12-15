@@ -16,7 +16,7 @@ public class Room {
 	 * @param file the file to be opened that contains the room
 	 */
 	Room(String rFile) throws IOException{
-		room = new char[5][20];
+		room = new char[8][20];
 		objects = new ArrayList<WorldObject>();
 		gameObjects =  new ArrayList<UseableWorldObject>();
 		containers =  new ArrayList<Container>();
@@ -25,8 +25,9 @@ public class Room {
 		name = "";
 		
 		try(
-			FileReader in = new FileReader(new File(rFile));
+				BufferedReader in = new BufferedReader(new FileReader(rFile));
 		){
+			
 			int c;
 			for(int i = 0; i < room.length; i++){
 				for(int x = 0; x < room[0].length; x++){
@@ -40,6 +41,7 @@ public class Room {
 					}
 				}
 			}
+			
 		}
 		
 		try(
@@ -48,7 +50,7 @@ public class Room {
 				for(int i = 0; i < room.length; i++){
 					in.readLine();
 				}
-				
+				name = in.readLine();
 				String line = in.readLine();
 				WorldObject temp;
 				while(!(line.equals("End World Objects"))){
@@ -103,11 +105,11 @@ public class Room {
 				}
 			}
 	}
-	
+	/*
 	/*
 	 * Prints the room
-	 */
-	public void printRoom(){
+	*/
+	public void aprintRoom(){
 		System.out.println(name);
 		for(int i = 0; i < room.length; i++){
 			for(int x = 0; x < room[0].length; x++){
@@ -118,6 +120,26 @@ public class Room {
 		if(currentLoc != null){
 			System.out.println(currentLoc.getIcon() + ": " + currentLoc.getDecription());
 		}
+	}
+	
+	public String toString() {
+		String out = "";
+		for (int i = 0; i < room.length; i++){
+			for(int x = 0; x < room[0].length; x++){
+				out += room[i][x];
+			}
+			out += "\n\r";
+		}
+		
+		if(currentLoc != null){
+			out += (currentLoc.getIcon() + ": " + currentLoc.getDecription()) + "\n\r";
+		}
+		
+		return out;
+	}
+	
+	public char[][] getChars() {
+		return room;
 	}
 	
 	/*
@@ -161,13 +183,13 @@ public class Room {
 			boolean matched = false;
 			
 			WorldObject temp = new UseableWorldObject(room[p.getY()][p.getX() + count], p.getX() + count, p.getY());
-			if(gameObjects.indexOf(temp) != -1){
+			if(gameObjects.indexOf(temp) != -1) {
 				currentLoc = gameObjects.get(gameObjects.indexOf(temp));
 				room[p.getY()][p.getX() + count] = Player.ICON;
 				matched = true;
 			}
 			
-			temp = new Container(p.getX(), p.getY() + count);
+			temp = new Container(p.getX() + count, p.getY());
 			if(!matched &&(containers.indexOf(temp) != -1)){
 				currentLoc = containers.get(containers.indexOf(temp));
 				room[p.getY()][p.getX() + count] = Player.ICON;
@@ -247,14 +269,14 @@ public class Room {
 				matched = true;
 			}
 			
-			temp = new Container(p.getX() + count, p.getY());
+			temp = new Container(p.getX(), p.getY() + count);
 			if(!matched &&(containers.indexOf(temp) != -1)){
 				currentLoc = containers.get(containers.indexOf(temp));
 				room[p.getY() + count][p.getX()] =  Player.ICON;
 				matched = true;
 			}
 			
-			temp = new Exit(p.getX() + count, p.getY());
+			temp = new Exit(p.getX(), p.getY() + count);
 			if(!matched &&(exits.indexOf(temp) != -1)){
 				currentLoc = exits.get(exits.indexOf(temp));
 				room[p.getY() + count][p.getX()] = Player.ICON;
@@ -287,14 +309,14 @@ public class Room {
 				matched = true;
 			}
 			
-			temp = new Container(p.getX() + count, p.getY());
+			temp = new Container(p.getX(), p.getY() + count);
 			if(!matched &&(containers.indexOf(temp) != -1)){
 				currentLoc = containers.get(containers.indexOf(temp));
 				room[p.getY() + count][p.getX()] =  Player.ICON;
 				matched = true;
 			}
 			
-			temp = new Exit(p.getX() + count, p.getY());
+			temp = new Exit(p.getX(), p.getY() + count);
 			if(!matched &&(exits.indexOf(temp) != -1)){
 				currentLoc = exits.get(exits.indexOf(temp));
 				room[p.getY() + count][p.getX()] = Player.ICON;
@@ -351,5 +373,11 @@ public class Room {
 		} else {
 			return "There is no door";
 		}
+	}
+	
+	public static void main(String[] args) throws IOException {
+		Room r = new Room("Rooms\\MedBay");
+		System.out.println(r);
+		//r.aprintRoom();
 	}
 }

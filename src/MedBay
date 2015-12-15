@@ -1,0 +1,18 @@
+                    
+                    
+     **********     
+     *oBooooBo*     
+     *oBCoooBo*     
+     ****=*****     
+                    
+                    
+MedBay
+* 0 wall
+o 0 floor
+B 0 Medical Bed
+End World Objects
+4 8 Security Badge
+End Containers
+5 9 8 3 South Hallway
+End Exits
+End of File
